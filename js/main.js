@@ -2,7 +2,7 @@
 async function main() {
   const response = await fetch("/data/livros.json");
   const data = await response.json();
-  
+
   // Obtém a lista de livros
   const listaLivros = document.getElementById("lista-livros");
 
