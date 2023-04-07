@@ -2,10 +2,10 @@
 
 import express from 'express';
 import morgan from 'morgan';
-import {livros} from './livros.js';
+import { livros } from './livros.js';
 import path from 'path';
 
-// tratando de erros do tipo HTTP
+// tratando erros do tipo HTTP
 class HTTPError extends Error {
   constructor(message, code) {
     super(message);
@@ -13,7 +13,7 @@ class HTTPError extends Error {
   }
 };
 
-// rotas e outras coisas
+// configs e rotas
 
 const server = express();
 
@@ -21,9 +21,12 @@ server.use(morgan('tiny'));
 
 server.use(express.static('public'));
 
-server.get('/', (req, res) => {
-  const enviaarquivo = path.join(__dirname, '../public/pagina-inicial.html');
-  res.sendFile(enviaarquivo);
+server.get('/pagina-inicial', function(req, res) {
+  res.sendFile(__dirname + '/html/pagina-inicial.html');
+});
+
+server.get('/ola', (req, res) => {
+  res.send('Ola, mundo!');
 });
 
 // mensagens de erro
