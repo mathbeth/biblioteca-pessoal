@@ -2,8 +2,9 @@
 
 import express from 'express';
 import morgan from 'morgan';
-import { livros } from './livros.js';
+// import { livros } from './livros.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 // tratando erros do tipo HTTP
 class HTTPError extends Error {
@@ -15,18 +16,34 @@ class HTTPError extends Error {
 
 // configs e rotas
 
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 const server = express();
 
 server.use(morgan('tiny'));
 
 server.use(express.static('public'));
 
+server.get('/index', function(req, res) {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
+
+server.get('/cadastro', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/html/cadastro.html'));
+});
+
+server.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/html/login.html'));
+});
+
 server.get('/pagina-inicial', function(req, res) {
-  res.sendFile(__dirname + '/html/pagina-inicial.html');
+  res.sendFile(path.join(__dirname, '../public/html/pagina-inicial.html'));
 });
 
 server.get('/ola', (req, res) => {
-  res.send('Ola, mundo!');
+  res.send('Olá, mundo!');
 });
 
 // mensagens de erro
