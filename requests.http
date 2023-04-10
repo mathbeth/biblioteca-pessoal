@@ -1,0 +1,12 @@
+@host = http://localhost:3000
+
+POST {{host}}/users
+
+Content-Type: application/json
+
+{
+  "username": "math",
+  "email": "matheus@gmail.com",
+  "password": "maribeth123",
+  "againpassword": "maribeth123",
+}

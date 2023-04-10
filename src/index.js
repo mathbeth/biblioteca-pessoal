@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { users } from './data/users.js';
 
 // tratando erros do tipo HTTP
 class HTTPError extends Error {
@@ -25,6 +26,8 @@ const server = express();
 
 server.use(morgan('tiny'));
 
+server.use(express.json());
+
 server.use(express.static('public'));
 
 server.get('/index', function(req, res) {
@@ -32,7 +35,24 @@ server.get('/index', function(req, res) {
 });
 
 server.get('/cadastro', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/html/cadastro.html')); // vai virar POST
+  res.sendFile(path.join(__dirname, '../public/html/cadastro.html'));
+});
+
+server.get('/users', (req, res) => {
+  res.json(users)
+})
+
+server.post('/users', (req, res) => {
+  const user = req.body;
+
+  if(user) {
+    users.push({...user});
+
+    res.json(user);
+  } else {
+    throw new HTTPError('Dados inválidos, não foi possível realizar seu cadastro', 400)
+  }
+
 });
 
 server.get('/login', function(req, res) {

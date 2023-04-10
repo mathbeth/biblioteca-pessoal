@@ -21,10 +21,10 @@
   <main class="main-cadastro">
     <section>
       <h1 class="cabecalho-cadastro">Cadastre-se</h1>
-      <form class="form-cadastro">
+      <form action="/cadastro" method="post" class="form-cadastro">
         <div class="campo">
-          <label for="nome"><strong>Nome de usuário</strong></label>
-          <input type="text" name="nome" id="nome" required class="input-padrao"
+          <label for="username"><strong>Nome de usuário</strong></label>
+          <input type="text" name="username" id="username" required class="input-padrao"
             placeholder="Digite seu nome de usuário">
         </div>
 
@@ -34,13 +34,13 @@
         </div>
 
         <div class="campo">
-          <label for="senha"><strong>Senha</strong></label>
-          <input type="password" name="senha" id="senha" required class="input-padrao" placeholder="Digite sua senha">
+          <label for="password"><strong>Senha</strong></label>
+          <input type="password" name="password" id="password" required class="input-padrao" placeholder="Digite sua senha">
         </div>
 
         <div class="campo">
-          <label for="confirmasenha"><strong>Confirme sua senha</strong></label>
-          <input type="password" name="confirmasenha" id="confirmasenha" required class="input-padrao"
+          <label for="confirmpassword"><strong>Confirme sua senha</strong></label>
+          <input type="password" name="confirmpassword" id="confirmpassword" required class="input-padrao"
             placeholder="Confirme sua senha">
         </div>
 
