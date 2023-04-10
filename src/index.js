@@ -32,19 +32,15 @@ server.get('/index', function(req, res) {
 });
 
 server.get('/cadastro', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/html/cadastro.html'));
+  res.sendFile(path.join(__dirname, '../public/html/cadastro.html')); // vai virar POST
 });
 
 server.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/html/login.html'));
+  res.sendFile(path.join(__dirname, '../public/html/login.html')); // vai virar POST
 });
 
 server.get('/pagina-inicial', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/html/pagina-inicial.html'));
-});
-
-server.get('/ola', (req, res) => {
-  res.send('Olá, mundo!');
 });
 
 // mensagens de erro
