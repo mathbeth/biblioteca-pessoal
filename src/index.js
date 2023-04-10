@@ -2,7 +2,6 @@
 
 import express from 'express';
 import morgan from 'morgan';
-// import { livros } from './livros.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,13 +13,15 @@ class HTTPError extends Error {
   }
 };
 
-// configs e rotas
+// constantes
 
 const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename); 
 
 const server = express();
+
+// rotas
 
 server.use(morgan('tiny'));
 

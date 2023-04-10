@@ -1,6 +1,6 @@
 // Obtém os dados do arquivo JSON
 async function main() {
-    const response = await fetch("/public/data/livros.json");
+    const response = await fetch("/data/livros.json");
     const data = await response.json();
   
     // Obtém a lista de livros
