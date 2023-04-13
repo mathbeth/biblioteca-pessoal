@@ -31,7 +31,7 @@ server.use(express.json());
 server.use(express.static('public'));
 
 server.get('/index', function(req, res) {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 server.get('/cadastro', function(req, res) {
