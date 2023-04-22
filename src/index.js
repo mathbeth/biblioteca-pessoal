@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { v4 as uuidv4 } from 'uuid';
 import { users } from './data/users.js';
 
 // tratando erros do tipo HTTP
@@ -12,13 +13,13 @@ class HTTPError extends Error {
     super(message);
     this.code = code;
   }
-};
+}
 
 // constantes
 
 const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename); 
+const __dirname = path.dirname(__filename);
 
 const server = express();
 
@@ -30,36 +31,51 @@ server.use(express.json());
 
 server.use(express.static('public'));
 
-server.get('/index', function(req, res) {
+server.get('/index', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-server.get('/cadastro', function(req, res) {
+server.get('/cadastro', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/html/cadastro.html'));
 });
 
-server.get('/users', (req, res) => {
-  res.json(users)
-})
-
-server.post('/users', (req, res) => {
+server.post('/cadastro', (req, res) => {
   const user = req.body;
 
-  if(user) {
-    users.push({...user});
+  const id = uuidv4();
 
-    res.json(user);
+  if (user) {
+    users.push({ ...user, id });
+
+    res.send('Cadastro concluído com sucesso');
   } else {
-    throw new HTTPError('Dados inválidos, não foi possível realizar seu cadastro', 400)
+    throw new HTTPError('Dados inválidos para cadastro de usuário', 400);
+  }
+});
+
+server.delete('/users/:id', (req, res) => {
+  const id = req.params.id;
+
+  if (id) {
+    const index = users.findIndex(
+      (user) => user.id === id
+    );
+
+    users.splice(index, 1);
   }
 
+  res.send(204);
 });
 
-server.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/html/login.html')); // vai virar POST
+server.get('/users', (req, res) => {
+  res.json(users);
 });
 
-server.get('/pagina-inicial', function(req, res) {
+server.get('/login', function (req, res) {
+  res.sendFile(path.join(__dirname, '../public/html/login.html'));
+});
+
+server.get('/pagina-inicial', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/html/pagina-inicial.html'));
 });
 
@@ -80,5 +96,5 @@ server.use((err, req, res, next) => {
 // servidor rodando...
 
 server.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('O servidor está rodando na porta 3000');
 });

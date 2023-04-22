@@ -1,12 +1,22 @@
 @host = http://localhost:3000
 
-POST {{host}}/users
+### Cadastro de usuário
+
+POST {{host}}/cadastro
 
 Content-Type: application/json
 
 {
-  "username": "math",
-  "email": "matheus@gmail.com",
-  "password": "maribeth123",
-  "againpassword": "maribeth123",
+  "username": "fulano",
+  "email": "fulano@example.com",
+  "password": "senha123",
+  "confirmpassword": "senha123"
 }
+
+### Array de usuários
+
+GET {{host}}/users
+
+### DELETE USER
+
+DELETE {{host}}/users/cbe3c2be-2a2c-43b2-9f8c-deb3a5977dd5
