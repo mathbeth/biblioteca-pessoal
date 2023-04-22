@@ -40,13 +40,13 @@ server.get('/cadastro', function (req, res) {
 });
 
 server.post('/cadastro', (req, res) => {
+
   const user = req.body;
 
   const id = uuidv4();
 
   if (user) {
     users.push({ ...user, id });
-
     res.send('Cadastro concluído com sucesso');
   } else {
     throw new HTTPError('Dados inválidos para cadastro de usuário', 400);
@@ -64,7 +64,7 @@ server.delete('/users/:id', (req, res) => {
     users.splice(index, 1);
   }
 
-  res.send(204);
+  res.send('Cadastro excluído com sucesso!');
 });
 
 server.get('/users', (req, res) => {

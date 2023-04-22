@@ -9,8 +9,8 @@ Content-Type: application/json
 {
   "username": "fulano",
   "email": "fulano@example.com",
-  "password": "senha123",
-  "confirmpassword": "senha123"
+  "password": "Senh@1Abc",
+  "confirmpassword": "Senh@1Abc"
 }
 
 ### Array de usuários
@@ -19,4 +19,4 @@ GET {{host}}/users
 
 ### DELETE USER
 
-DELETE {{host}}/users/cbe3c2be-2a2c-43b2-9f8c-deb3a5977dd5
+DELETE {{host}}/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
