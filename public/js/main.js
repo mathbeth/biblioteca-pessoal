@@ -26,5 +26,6 @@ async function main() {
 
     listaLivros.appendChild(elementoLivro);
   });
+}
 
-main()}
+main();

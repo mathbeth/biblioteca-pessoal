@@ -40,7 +40,6 @@ server.get('/cadastro', function (req, res) {
 });
 
 server.post('/cadastro', (req, res) => {
-
   const user = req.body;
 
   const id = uuidv4();
@@ -57,9 +56,7 @@ server.delete('/users/:id', (req, res) => {
   const id = req.params.id;
 
   if (id) {
-    const index = users.findIndex(
-      (user) => user.id === id
-    );
+    const index = users.findIndex((user) => user.id === id);
 
     users.splice(index, 1);
   }
