@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <script type="text/javascript" src="/js/main.js"> </script>
+  <script type="text/javascript" src="/js/main.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
   <link rel="manifest" href="/favicon/site.webmanifest">
   <title>Book'ncat - Login</title>
 </head>
-
 <body>
   <header class="cabecalho">
-    <img src="/favicon/logo-gato.png" class="logo">
+    <img src="/favicon/logo-gato.png" class="logo" />
     <p>book'ncat</p>
   </header>
-
-  <main class="main-login">
-
-    <section class="conteudo-login">
-
-      <h1 class="cabecalho-login">Login</h1>
-
-      <form class="formulario-login">
-
-        <div class="campo">
-          <label for="email"><strong>Email</strong></label>
-          <input type="email" name="email" id="email" class="input-padrao" placeholder="Digite seu email"> 
+  <main class="main-cadastro">
+    <h1 class="cabecalho-cadastro">Login</h1>
+    <form action="/cadastro" method="post">
+        <div class="form-group"></div>
+          <label for="nome">Nome de usuário:</label>
+          <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required />
         </div>
-
-        <div class="campo">
-          <label for="senha"><strong>Senha</strong></label>
-          <input type="password" name="senha" id="senha" class="input-padrao" placeholder="Digite sua senha">
+        <div class="form-group">
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
         </div>
-
-        <a href="/html/pagina-inicial.html"><button class="botao-login" type="submit" name="envia" id="envia" value="Assinar" onclick="assinar()" disabled>Enviar</button></a>
-
+        <div class="buttons-container">
+          <button class="botao-cadastro">Login</button>
+          <button class="botao-cadastro">Voltar</button>
+        </div>        
       </form>
-
-    </section>
-
   </main>
-
 </body>
-
 </html>

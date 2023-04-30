@@ -87,37 +87,57 @@ h1 {
 
 /* cadastro */
 
-.main-cadastro {
-  text-align: center;
-  width: 100%;
-  margin: 0px 0;
-}
-
 .cabecalho-cadastro {
   font-family: var(--fonte-titulo);
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
   color: white;
+}
+
+form {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.4rem;
+  margin-top: 0.7rem;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+.buttons-container {
   text-align: center;
-}
-
-.form-cadastro {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-}
-
-.campo label {
-    display: block;
-    font-size: 20px;
-    margin: 20px 0 10px;
-    color: white;
-    font-family: var(--fonte-titulo);
-}
-
-.input-padrao {
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
-    width: 90%;
 }
 
 .botao-cadastro {
