@@ -1,46 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
-  <link rel="manifest" href="/favicon/site.webmanifest" />
-  <title>Book'ncat - Cadastro</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book'ncat - Cadastro</title>
+    <link rel="stylesheet" href="/css/cadastro.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+  </head>
+  <body>
+    <div class="inFormBackground">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="inLoginForm">
+        <form method="POST" action="/cadastro">
+          <div class="title">
+            <h3>Cadastre-se</h3>
+          </div>
+          <div class="inputGroup">
+            <label for="username">Nome de usuário:</label>
+            <input
+              class="name"
+              type="text"
+              placeholder="Digite seu nome de usuário"
+              id="username"
+              name="username"
+            />
+          </div>
+          <div class="inputGroup">
+            <label for="email">Email:</label>
+            <input
+              class="email"
+              type="email"
+              placeholder="Digite seu email"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div class="inputGroup">
+            <label for="password">Senha:</label>
+            <input
+              class="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              id="password"
+              name="password"
+            />
+          </div>
+          <button
+            class="submitForm"
+            type="submit"
+            value="Cadastrar"
+          >
+            Cadastrar
+          </button>
 
-</head>
-<body>
-  <header class="cabecalho">
-    <img src="/favicon/logo-gato.png" class="logo" />
-    <p>book'ncat</p>
-  </header>
-  <main class="main-cadastro">
-    <h1 class="cabecalho-cadastro">Cadastre-se</h1>
-    <form action="/cadastro" method="post">
-        <div class="form-group"></div>
-          <label for="nome">Nome de usuário:</label>
-          <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required />
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" placeholder="Digite seu email" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Senha:</label>
-          <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sua senha precisa conter pelo menos um número, letras maiúsculas e minúsculas e no mínimo 8 caracteres." placeholder="Digite sua senha" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Senha:</label>
-          <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sua senha precisa conter pelo menos um número, letras maiúsculas e minúsculas e no mínimo 8 caracteres." placeholder="Digite sua senha" required />
-        </div>
-        <div class="buttons-container">
-          <button class="botao-cadastro">Login</button>
-          <button class="botao-cadastro">Voltar</button>
-        </div>        
-      </form>
-  </main>
-</body>
+          <div class="social">
+            <div class="go"><i class="fab fa-google"></i></div>
+            <div class="fb"><i class="fab fa-facebook"></i></div>
+            <div class="tw"><i class="fab fa-twitter"></i></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

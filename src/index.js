@@ -3,9 +3,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
+import users from './data/users.js';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
-import { users } from './data/users.js';
+
 
 // tratando erros do tipo HTTP
 class HTTPError extends Error {
@@ -25,6 +26,8 @@ const server = express();
 
 // rotas
 
+server.use(express.urlencoded({ extended: true }));
+
 server.use(morgan('tiny'));
 
 server.use(express.json());
@@ -40,16 +43,26 @@ server.get('/cadastro', function (req, res) {
 });
 
 server.post('/cadastro', (req, res) => {
-  const user = req.body;
+  const { username, email, password } = req.body;
+
+  if (username == '' || email == '' || password == '') {
+    return res.status(400).send('Por favor, preencha todos os campos!');
+  }
+
+  if (password.length < 8) {
+    return res.status(400).send('A senha deve ter pelo menos 8 caracteres!');
+  }
+
+  if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
+    return res
+      .status(400)
+      .send('Por favor, digite um endereço de e-mail válido!');
+  }
 
   const id = uuidv4();
 
-  if (user) {
-    users.push({ ...user, id });
-    res.send('Cadastro concluído com sucesso');
-  } else {
-    throw new HTTPError('Dados inválidos para cadastro de usuário', 400);
-  }
+  users.push({ id, username, email, password });
+  res.status(201).json({ message: 'Usuário cadastrado com sucesso', id });
 });
 
 server.delete('/users/:id', (req, res) => {
