@@ -5,8 +5,6 @@ import morgan from 'morgan';
 import path from 'path';
 import users from './data/users.js';
 import { fileURLToPath } from 'url';
-import { v4 as uuidv4 } from 'uuid';
-
 
 // tratando erros do tipo HTTP
 class HTTPError extends Error {
@@ -34,7 +32,7 @@ server.use(express.json());
 
 server.use(express.static('public'));
 
-server.get('/index', function (req, res) {
+server.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
@@ -54,9 +52,7 @@ server.post('/cadastro', (req, res) => {
   }
 
   if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
-    return res
-      .status(400)
-      .send('Por favor, digite um endereço de e-mail válido!');
+    return res.status(400).send('Por favor, digite um endereço de e-mail válido!');
   }
 
   const id = uuidv4();
@@ -77,12 +73,37 @@ server.delete('/users/:id', (req, res) => {
   res.send('Cadastro excluído com sucesso!');
 });
 
+server.get('/usuarios', function (req, res) {
+  let html =
+    '<html><head><style> table { border-collapse: collapse; width: 100%; } th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; } th { background-color: #f2f2f2; color: #666; font-weight: bold; } tr:hover { background-color: #f5f5f5; } </style> <title>Usuários</title></head><body><h1>Usuários</h1><table><thead><tr><th>ID</th><th>Nome de usuário</th><th>Email</th><th>Senha</th></tr></thead><tbody>';
+  users.forEach(function (user) {
+    html +=
+      '<tr><td>' +
+      user.id +
+      '</td><td>' +
+      user.username +
+      '</td><td>' +
+      user.email +
+      '</td><td>' +
+      user.password +
+      '</td></tr>';
+  });
+
+  html += '</tbody></table></body></html>';
+
+  res.send(html);
+});
+
 server.get('/users', (req, res) => {
   res.json(users);
 });
 
 server.get('/login', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/html/login.html'));
+});
+
+server.get('/perfil', function (req, res) {
+  res.sendFile(path.join(__dirname, '../public/html/perfil.html'));
 });
 
 server.get('/pagina-inicial', function (req, res) {
