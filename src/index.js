@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import users from './data/users.js';
+import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 
 // tratando erros do tipo HTTP
@@ -56,7 +57,6 @@ server.post('/cadastro', (req, res) => {
   }
 
   const id = uuidv4();
-
   users.push({ id, username, email, password });
   res.status(201).json({ message: 'Usuário cadastrado com sucesso', id });
 });
