@@ -1,8 +1,0 @@
-aqui vai ficar:
-
-seeders json/js
-migration js
-load js
-database js
-
-e vai surgir o db.sqlite

@@ -1,2 +1,0 @@
-aqui vão ficar coisitas para o db, cada tabela vai ganhar um. 
-manipulçao e definição

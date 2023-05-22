@@ -16,7 +16,7 @@ GET {{host}}/usuarios
 
 ### Deletar usuário
 
-DELETE {{host}}/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+DELETE {{host}}/users/5
 
 ### Array de livros
 
@@ -36,4 +36,4 @@ Content-Type: application/json
 
 ### Deletar livro 
 
-DELETE {{host}}/livros/5
+DELETE {{host}}/livros/

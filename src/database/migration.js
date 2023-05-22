@@ -27,13 +27,15 @@ async function up() {
 
   const estanteSql = `
     CREATE TABLE estante (
-      user_id INTEGER references usuarios (user_id),
-      livro_id INTEGER references livros (livro_id),
+      user_id INTEGER,
+      livro_id INTEGER,
       status TEXT,
       classificacao INTEGER,
       resenha TEXT,
       data_inicio DATE,
-      data_fim DATE
+      data_fim DATE,
+      FOREIGN KEY (user_id) REFERENCES usuarios(user_id),
+      FOREIGN KEY (livro_id) REFERENCES livros(livro_id)
     )`;
 
   await db.run(estanteSql);

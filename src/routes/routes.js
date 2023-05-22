@@ -19,8 +19,6 @@ const __dirname = path.dirname(__filename);
 
 const router = Router();
 
-const saltRounds = 10;
-
 router.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
@@ -66,9 +64,9 @@ router.get('/perfil', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/perfil.html'));
 });
 
-router.get('/estante', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/estante.html'));
-});
+// router.get('/estante', function (req, res) {
+//   res.sendFile(path.join(__dirname, '../../public/html/estante.html'));
+// });
 
 router.get('/cadastro/livro', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));
@@ -107,8 +105,8 @@ router.post('/estante', async (req, res) => {
 
   const novaEstante = await Estante.create(estante);
 
-  if (novaEstante) {
-    res.status(201).json({ message: 'Estante cadastrado com sucesso', id: novaEstante.id });
+  if (novaEstante) { 
+    res.status(201).json({ message: 'Estante cadastrada com sucesso', id: novaEstante.id });
   } else {
     res.status(400).json({ message: 'Erro ao cadastrar estante' });
   }

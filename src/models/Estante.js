@@ -1,7 +1,9 @@
 import Database from "../database/database.js";
 
-async function create(user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim) {
+async function create(estante) {
   const db = await Database.connect();
+
+  const { user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim } = estante;
 
   const sql = 
   `INSERT INTO estante (user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim) 
@@ -39,15 +41,17 @@ async function read(user_id, livro_id) {
   return livro;
 }
 
-async function update(user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim) {
+async function update(estante) {
   const db = await Database.connect();
+
+  const { user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim } = estante;
 
   const sql = 
   `UPDATE estante 
   SET status = ?, classificacao = ?, resenha = ?, data_inicio = ?, data_fim = ? 
   WHERE user_id = ? AND livro_id = ?`;
 
-  const { changes } = await db.run(sql, [status, classificacao, resenha, data_inicio, data_fim, user_id, livro_id]);
+  const { changes } = await db.run(sql, [user_id, livro_id, status, classificacao, resenha, data_inicio, data_fim, user_id, livro_id]);
 
   if (changes === 1) {
     return read(user_id, livro_id);
