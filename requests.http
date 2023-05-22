@@ -8,12 +8,32 @@ Content-Type: application/json
 {
   "username": "matheus",
   "email": "matheus@admin.com",
-  "password": 12345678
+  "senha": 12345678
 }
 
 ### Array de usuários
-GET {{host}}/users
+GET {{host}}/usuarios
 
 ### Deletar usuário
 
 DELETE {{host}}/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+
+### Array de livros
+
+GET {{host}}/livros
+
+### Cadastrar livro
+
+POST {{host}}/cadastro/livro
+Content-Type: application/json
+
+{
+  "titulo": "teste",
+  "autor": "testeovaldo da silva",
+  "editora": "testando",
+  "ano_pub": 1984
+}
+
+### Deletar livro 
+
+DELETE {{host}}/livros/5

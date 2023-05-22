@@ -179,7 +179,6 @@ h1 {
   justify-content: space-between;
 }
 
-
 .logo-titulo {
   display: flex;
 }
@@ -200,13 +199,13 @@ h1 {
   width: 200px;
 }
 
-input[type="text"] {
+/* input[type="text"] {
   width: 100%;
   padding: 5px 30px 5px 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
   box-sizing: border-box;
-}
+} */
 
 button[type="submit"] {
   position: absolute;
@@ -332,4 +331,25 @@ ul#lista-livros {
 .buttons button i {
 	font-size: 20px;
 	margin-right: 5px;
+}
+
+/* cadastro de livros */
+
+.btn-secondary {
+  background-color: #101728;
+  border-color: #101728;
+}
+
+.offcanvas-header {
+  background-color: #101728;
+  color: #fff;
+}
+
+.form-control {
+  background-color: #fff;
+  color: #101728;
+}
+
+.btn-close {
+  color: #fff;
 }

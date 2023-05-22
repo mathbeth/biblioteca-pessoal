@@ -1,8 +1,10 @@
-import express from 'express';
-import users from '../data/users.js';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { Router } from 'express';
 import { fileURLToPath } from 'url';
+import bcrypt from 'bcrypt';
+import path from 'path';
+import Usuario from '../models/Usuario.js';
+import Livro from '../models/Livro.js';
+import Estante from '../models/Estante.js';
 
 class HTTPError extends Error {
   constructor(message, code) {
@@ -15,7 +17,9 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
-const router = express.Router();
+const router = Router();
+
+const saltRounds = 10;
 
 router.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
@@ -25,61 +29,33 @@ router.get('/cadastro', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/cadastro.html'));
 });
 
-router.post('/cadastro', (req, res) => {
-  const { username, email, password } = req.body;
+router.post('/cadastro', async (req, res) => {
+  const usuario = req.body;
 
-  if (username == '' || email == '' || password == '') {
-    return res.status(400).send('Por favor, preencha todos os campos!');
+  const novoUsuario = await Usuario.create(usuario);
+
+  if (novoUsuario) {
+    res.status(201).json({ message: 'Usuário cadastrado com sucesso', id: novoUsuario.id });
+  } else {
+    res.status(400).json({ message: 'Erro ao cadastrar usuário' });
   }
-
-  if (password.length < 8) {
-    return res.status(400).send('A senha deve ter pelo menos 8 caracteres!');
-  }
-
-  if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
-    return res.status(400).send('Por favor, digite um endereço de e-mail válido!');
-  }
-
-  const id = uuidv4();
-  users.push({ id, username, email, password });
-  res.status(201).json({ message: 'Usuário cadastrado com sucesso', id });
 });
 
-router.delete('/users/:id', (req, res) => {
+router.get('/usuarios', async (req, res) => {
+
+  const usuarios = await Usuario.readAll();
+
+  res.json(usuarios);
+});
+
+router.delete('/users/:id', async (req, res) => {
   const id = req.params.id;
 
-  if (id) {
-    const index = users.findIndex((user) => user.id === id);
-
-    users.splice(index, 1);
+  if (id && (await Usuario.remove(id))) {
+    res.json({ message: 'Usuário removido com sucesso' });
+  } else {
+    res.json({ message: 'Erro ao remover usuário' });
   }
-
-  res.send('Cadastro excluído com sucesso!');
-});
-
-router.get('/usuarios', function (req, res) {
-  let html =
-    '<html><head><style> table { border-collapse: collapse; width: 100%; } th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; } th { background-color: #f2f2f2; color: #666; font-weight: bold; } tr:hover { background-color: #f5f5f5; } </style> <title>Usuários</title></head><body><h1>Usuários</h1><table><thead><tr><th>ID</th><th>Nome de usuário</th><th>Email</th><th>Senha</th></tr></thead><tbody>';
-  users.forEach(function (user) {
-    html +=
-      '<tr><td>' +
-      user.id +
-      '</td><td>' +
-      user.username +
-      '</td><td>' +
-      user.email +
-      '</td><td>' +
-      user.password +
-      '</td></tr>';
-  });
-
-  html += '</tbody></table></body></html>';
-
-  res.send(html);
-});
-
-router.get('/users', (req, res) => {
-  res.json(users);
 });
 
 router.get('/login', function (req, res) {
@@ -90,13 +66,78 @@ router.get('/perfil', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/perfil.html'));
 });
 
-router.get('/pagina-inicial', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/pagina-inicial.html'));
+router.get('/estante', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../public/html/estante.html'));
 });
+
+router.get('/cadastro/livro', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));
+});
+
+router.post('/cadastro/livro', async (req, res) => {
+  const livro = req.body;
+
+  const novoLivro = await Livro.create(livro);
+
+  if(novoLivro) {
+    res.status(201).json({ message: 'Livro cadastrado com sucesso' });
+  } else {
+    res.status(400).json({ message: 'Erro ao cadastrar livro' });
+  }
+});
+
+router.get('/livros', async (req, res) => {
+  const livros = await Livro.readAll();
+
+  res.json(livros);
+});
+
+router.delete('/livros/:id', async (req, res) => {
+  const id = req.params.id;
+
+  if (id && await Livro.remove(id)) {
+    res.json({ message: 'Livro removido com sucesso' });
+  } else {
+    res.json({ message: 'Erro ao remover livro' });
+  }
+});
+
+router.post('/estante', async (req, res) => {
+  const estante = req.body;
+
+  const novaEstante = await Estante.create(estante);
+
+  if (novaEstante) {
+    res.status(201).json({ message: 'Estante cadastrado com sucesso', id: novaEstante.id });
+  } else {
+    res.status(400).json({ message: 'Erro ao cadastrar estante' });
+  }
+});
+
+router.get('/estante', async (req, res) => {
+  const estante = await Estante.readAll();
+
+  res.json(estante);
+});
+
+router.delete('/estante/:user_id/:livro_id', async (req, res) => {
+  const user_id = req.params.user_id;
+  const livro_id = req.params.livro_id;
+
+  if (user_id && livro_id && (await Estante.remove(user_id, livro_id))) {
+    res.json({ message: 'Estante removida com sucesso' });
+  } else {
+    res.json({ message: 'Erro ao remover estante' });
+  }
+})
+
+// 404 handler
 
 router.use((req, res, next) => {
   res.status(404).json({ message: 'Content not found!' });
 });
+
+// Error handler
 
 router.use((err, req, res, next) => {
   if (err instanceof HTTPError) {
