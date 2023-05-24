@@ -28,27 +28,167 @@
 
   "livros": [
     {
-      "livro_id": 1,
+        "livro_id": 1,
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "editora": "Secker & Warburg",
+        "ano_pub": 1949
+    },
+    {
+        "livro_id": 2,
+        "titulo": "Orgulho e Preconceito",
+        "autor": "Jane Austen",
+        "editora": "T. Egerton, Whitehall",
+        "ano_pub": 1813
+    },
+    {
+        "livro_id": 3,
+        "titulo": "Cem Anos de Solidão",
+        "autor": "Gabriel García Márquez",
+        "editora": "Harper & Row",
+        "ano_pub": 1967
+    },
+    {
+        "livro_id": 4,
+        "titulo": "O Grande Gatsby",
+        "autor": "F. Scott Fitzgerald",
+        "editora": "Charles Scribner's Sons",
+        "ano_pub": 1925
+    },
+    {
+        "livro_id": 5,
+        "titulo": "Dom Quixote",
+        "autor": "Miguel de Cervantes",
+        "editora": "Francisco de Robles",
+        "ano_pub": 1605
+    },
+    {
+        "livro_id": 6,
+        "titulo": "Ulisses",
+        "autor": "James Joyce",
+        "editora": "Sylvia Beach",
+        "ano_pub": 1922
+    },
+    {
+        "livro_id": 7,
+        "titulo": "O Apanhador no Campo de Centeio",
+        "autor": "J.D. Salinger",
+        "editora": "Little, Brown and Company",
+        "ano_pub": 1951
+    },
+    {
+        "livro_id": 8,
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "editora": "Secker & Warburg",
+        "ano_pub": 1949
+    },
+    {
+        "livro_id": 9,
+        "titulo": "A Revolução dos Bichos",
+        "autor": "George Orwell",
+        "editora": "Secker & Warburg",
+        "ano_pub": 1945
+    },
+    {
+        "livro_id": 10,
+        "titulo": "O Sol é para Todos",
+        "autor": "Harper Lee",
+        "editora": "J. B. Lippincott & Co.",
+        "ano_pub": 1960
+    },
+    {
+        "livro_id": 11,
+        "titulo": "Em Busca do Tempo Perdido",
+        "autor": "Marcel Proust",
+        "editora": "Grasset",
+        "ano_pub": 1913
+    },
+    {
+        "livro_id": 12,
+        "titulo": "Moby Dick",
+        "autor": "Herman Melville",
+        "editora": "Harper & Brothers",
+        "ano_pub": 1851
+    },
+    {
+        "livro_id": 13,
+        "titulo": "Crime e Castigo",
+        "autor": "Fyodor Dostoevsky",
+        "editora": "The Russian Messenger",
+        "ano_pub": 1866
+    },
+    {
+        "livro_id": 14,
+        "titulo": "O Grande Inquisidor",
+        "autor": "Fyodor Dostoevsky",
+        "editora": null,
+        "ano_pub": 1880
+    },
+    {
+        "livro_id": 15,
+        "titulo": "As Vinhas da Ira",
+        "autor": "John Steinbeck",
+        "editora": "The Viking Press",
+        "ano_pub": 1939
+    },
+    {
+        "livro_id": 16,
+        "titulo": "A Montanha Mágica",
+        "autor": "Thomas Mann",
+        "editora": "S. Fischer Verlag",
+        "ano_pub": 1924
+    },
+    {
+        "livro_id": 17,
+        "titulo": "O Estrangeiro",
+        "autor": "Albert Camus",
+        "editora": "Gallimard",
+        "ano_pub": 1942
+    },
+    {
+        "livro_id": 18,
+        "titulo": "Guerra e Paz",
+        "autor": "Leo Tolstoy",
+        "editora": "The Russian Messenger",
+        "ano_pub": 1869
+    },
+    {
+        "livro_id": 19,
+        "titulo": "Cem Anos de Solidão",
+        "autor": "Gabriel García Márquez",
+        "editora": "Harper & Row",
+        "ano_pub": 1967
+    },
+    {
+        "livro_id": 20,
+        "titulo": "O Apanhador no Campo de Centeio",
+        "autor": "J.D. Salinger",
+        "editora": "Little, Brown and Company",
+        "ano_pub": 1951
+    },
+    {
+      "livro_id": 21,
       "titulo": "Como desenvolvemos o Bookn'cat",
       "autor": "queridos",
       "editora": "IFPB",
       "ano_pub": 2035
     },
     {
-      "livro_id": 2,
+      "livro_id": 22,
       "titulo": "Aprenda a desequilibrar seu ambiente de amigos em apenas dois passsos",
       "autor": "matheus e jhullia",
       "editora": null,
       "ano_pub": 2022
     },
     {
-      "livro_id": 3,
+      "livro_id": 23,
       "titulo": "Porque estar perto de árvores faz bem",
       "autor": "pessoas da árvore",
       "editora": null,
       "ano_pub": 2022
     }
-  ],
+],
   
   "estante": [
     {

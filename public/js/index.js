@@ -1,9 +1,11 @@
 function getBookView(livro) {
+  const { livro_id, titulo, autor, editora, ano_pub } = livro;
+
   return `
-    <div class="col" id="livro-${livro.id}">
+    <div class="col" id="livro-${livro_id}">
       <div class="card">
         <div class="card-header">
-          ${livro.titulo}
+          ${titulo}
           <div class="icon-trash" style="float: right; display: inline">
             <span
               class="iconify"
@@ -15,49 +17,46 @@ function getBookView(livro) {
         </div>
         <div class="card-body">
           <div>
-            <span class="fw-bold">Autor:</span> ${livro.autor}
+            <span class="fw-bold">Autor:</span> ${autor}
           </div>
           <div>
-            <span class="fw-bold">Editora:</span> ${livro.editora}
+            <span class="fw-bold">Editora:</span> ${editora}
           </div>
           <div>
-            <span class="fw-bold">Ano de publicação:</span> ${livro.ano_pub}
+            <span class="fw-bold">Ano de publicação:</span> ${ano_pub}
           </div>
         </div>
       </div>
     </div>
   `;
 }
-function addBookView(livro) {
+
+async function addBookView(livro) {
   const livroGrid = document.querySelector('#livro-grid');
 
   const livroView = getBookView(livro);
 
   livroGrid.insertAdjacentHTML('beforeend', livroView);
 
-  const livroCard = document.querySelector(`#livro-${livro.id}`);
+  const livroCard = document.querySelector(`#livro-${livro.livro_id}`);
 
-  livroCard.querySelector('.icon-trash').onclick = async () => {
-    fetch(`/livros/${livro.id}`, {
-      method: 'delete',
+  const iconTrash = livroCard.querySelector('.icon-trash');
+  iconTrash.addEventListener('click', async () => {
+    await fetch(`/livros/${livro.livro_id}`, {
+      method: 'DELETE',
     });
 
     livroCard.remove();
-  };
+  });
 }
 
 async function loadBooks() {
   const response = await fetch('/livros');
-
   const livros = await response.json();
 
   for (const livro of livros) {
-    addBookView(livro);
+    await addBookView(livro);
   }
 }
 
-function loadBooksSelect() {
-  loadBooks();
-}
-
-window.onload = loadBooksSelect;
+window.addEventListener('load', loadBooks);
