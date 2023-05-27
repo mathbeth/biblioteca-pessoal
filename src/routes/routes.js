@@ -30,6 +30,10 @@ router.get('/cadastro', function (req, res) {
 router.post('/cadastro', async (req, res) => {
   const usuario = req.body;
 
+  const criptografia = await bcrypt.hash(usuario.senha, 10);
+
+  usuario.senha = criptografia;
+
   const novoUsuario = await Usuario.create(usuario);
 
   if (novoUsuario) {
@@ -77,10 +81,10 @@ router.post('/cadastro/livro', async (req, res) => {
 
   const novoLivro = await Livro.create(livro);
 
-  if(novoLivro) {
-    res.status(201).json({ message: 'Livro cadastrado com sucesso' });
+  if (novoLivro) {
+    res.json(novoLivro);
   } else {
-    res.status(400).json({ message: 'Erro ao cadastrar livro' });
+    throw new HTTPError('Não foi possivel cadastrar o livro', 400);
   }
 });
 

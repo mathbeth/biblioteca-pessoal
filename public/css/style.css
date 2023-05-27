@@ -335,11 +335,6 @@ ul#lista-livros {
 
 /* cadastro de livros */
 
-.btn-secondary {
-  background-color: #101728;
-  border-color: #101728;
-}
-
 .offcanvas-header {
   background-color: #101728;
   color: #fff;
@@ -348,10 +343,6 @@ ul#lista-livros {
 .form-control {
   background-color: #fff;
   color: #101728;
-}
-
-.btn-close {
-  color: #fff;
 }
 
 .grid-container {
@@ -386,4 +377,8 @@ ul#lista-livros {
 
 .fw-bold {
   font-weight: bold;
+}
+
+.text-center {
+  color: white;
 }
