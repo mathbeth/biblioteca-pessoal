@@ -1,16 +1,20 @@
 import Database from "../database/database.js";
+import bcrypt from 'bcrypt';
+const saltRounds = 10;
 
 async function create(usuario) {
   const db = await Database.connect();
 
   const { username, email, senha } = usuario;
 
+  const criptografia = await bcrypt.hash(usuario.senha, saltRounds);
+
   const sql = 
   `INSERT INTO usuarios 
   (username, email, senha) 
   VALUES (?, ?, ?)`;
 
-  const { lastID } = await db.run(sql, [username, email, senha]);
+  const { lastID } = await db.run(sql, [username, email, criptografia]);
 
   return read(lastID);
 }
