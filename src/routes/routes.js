@@ -82,7 +82,8 @@ router.post('/cadastro/livro', async (req, res) => {
   const novoLivro = await Livro.create(livro);
 
   if (novoLivro) {
-    res.json(novoLivro);
+    // res.json(novoLivro);
+    res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));
   } else {
     throw new HTTPError('Não foi possivel cadastrar o livro', 400);
   }

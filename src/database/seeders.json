@@ -77,13 +77,6 @@
         "ano_pub": 1951
     },
     {
-        "livro_id": 8,
-        "titulo": "1984",
-        "autor": "George Orwell",
-        "editora": "Secker & Warburg",
-        "ano_pub": 1949
-    },
-    {
         "livro_id": 9,
         "titulo": "A Revolução dos Bichos",
         "autor": "George Orwell",
