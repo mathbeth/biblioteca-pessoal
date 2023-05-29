@@ -6,9 +6,9 @@ async function up() {
   const usuariosSql = `
   CREATE TABLE usuarios (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT,
-    email TEXT,
-    senha TEXT,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    senha TEXT NOT NULL CHECK(LENGTH(senha) >= 8),
     UNIQUE (username, email)
   )`;
   
