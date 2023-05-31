@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { fileURLToPath } from 'url';
-import bcrypt from 'bcrypt';
+import { celebrate, Joi} from 'celebrate';
 import path from 'path';
 import Usuario from '../models/Usuario.js';
 import Livro from '../models/Livro.js';
@@ -30,10 +30,6 @@ router.get('/cadastro', function (req, res) {
 router.post('/cadastro', async (req, res) => {
   const usuario = req.body;
 
-  const criptografia = await bcrypt.hash(usuario.senha, 10);
-
-  usuario.senha = criptografia;
-
   const novoUsuario = await Usuario.create(usuario);
 
   if (novoUsuario) {
@@ -50,7 +46,7 @@ router.get('/usuarios', async (req, res) => {
   res.json(usuarios);
 });
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/usuarios/:id', async (req, res) => {
   const id = req.params.id;
 
   if (id && (await Usuario.remove(id))) {
@@ -82,8 +78,8 @@ router.post('/cadastro/livro', async (req, res) => {
   const novoLivro = await Livro.create(livro);
 
   if (novoLivro) {
-    // res.json(novoLivro);
-    res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));
+    res.json(novoLivro);
+    /* res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));*/
   } else {
     throw new HTTPError('Não foi possivel cadastrar o livro', 400);
   }

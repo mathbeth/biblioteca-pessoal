@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
   "username": "matheus",
-  "email": "matheus@admin.com",
-  "senha": 12345678
+  "email": "matheus@exam.com",
+  "senha": "M@thS@n2712"
 }
 
 ### Array de usuários
@@ -16,7 +16,7 @@ GET {{host}}/usuarios
 
 ### Deletar usuário
 
-DELETE {{host}}/users/5
+DELETE {{host}}/usuarios/5
 
 ### Array de livros
 
