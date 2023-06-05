@@ -17,8 +17,8 @@ async function up() {
   const livrosSql = `
   CREATE TABLE livros (
     livro_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    titulo TEXT,
-    autor TEXT,
+    titulo TEXT NOT NULL,
+    autor TEXT NOT NULL,
     editora TEXT,
     ano_pub INTEGER
   )`;

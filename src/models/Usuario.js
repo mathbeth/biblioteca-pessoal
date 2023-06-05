@@ -7,14 +7,14 @@ async function create(usuario) {
 
   const { username, email, senha } = usuario;
 
-  const criptografia = await bcrypt.hash(usuario.senha, saltRounds);
+ // const criptografia = await bcrypt.hash(usuario.senha, saltRounds);
 
   const sql = 
   `INSERT INTO usuarios 
   (username, email, senha) 
   VALUES (?, ?, ?)`;
 
-  const { lastID } = await db.run(sql, [username, email, criptografia]);
+  const { lastID } = await db.run(sql, [username, email, senha]);
 
   return read(lastID);
 }
@@ -35,6 +35,16 @@ async function read(id) {
   const sql = `SELECT * FROM usuarios WHERE user_id = ?`;
 
   const usuario =  await db.get(sql, [id]);
+
+  return usuario;
+}
+
+async function readByEmailAndPassword(email, senha) {
+  const db = await Database.connect();
+
+  const sql = `SELECT * FROM usuarios WHERE email = ? AND senha = ?`;
+
+  const usuario =  await db.get(sql, [email, senha]);
 
   return usuario;
 }
@@ -74,6 +84,7 @@ export default {
   create, 
   readAll, 
   read, 
+  readByEmailAndPassword,
   update, 
   remove 
 };

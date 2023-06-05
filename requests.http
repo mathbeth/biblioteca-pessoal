@@ -6,9 +6,9 @@ POST {{host}}/cadastro
 Content-Type: application/json
 
 {
-  "username": "matheus",
-  "email": "matheus@exam.com",
-  "senha": "M@thS@n2712"
+  "username": "gabu",
+  "email": "gabu@gmail.com",
+  "senha": "897654321"
 }
 
 ### Array de usuários
@@ -16,7 +16,7 @@ GET {{host}}/usuarios
 
 ### Deletar usuário
 
-DELETE {{host}}/usuarios/5
+DELETE {{host}}/usuarios/7
 
 ### Array de livros
 
@@ -37,3 +37,23 @@ Content-Type: application/json
 ### Deletar livro 
 
 DELETE {{host}}/livros/
+
+### Login válido
+
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "email": "heleny@example.com",
+  "senha": "adorodesenhar"
+}
+
+### Login inválido
+
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "email": "heleny@gmail.com",
+  "senha": "adorodesenhar"
+}

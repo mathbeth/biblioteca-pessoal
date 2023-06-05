@@ -32,7 +32,8 @@ router.post('/cadastro', async (req, res) => {
   const novoUsuario = await Usuario.create(usuario);
 
   if (novoUsuario) {
-    res.status(201).json({ message: 'Usuário cadastrado com sucesso', id: novoUsuario.id });
+    // res.status(201).json({ message: 'Usuário cadastrado com sucesso', id: novoUsuario.id });
+    res.json(novoUsuario);
   } else {
     res.status(400).json({ message: 'Erro ao cadastrar usuário' });
   }
@@ -57,6 +58,18 @@ router.delete('/usuarios/:id', async (req, res) => {
 
 router.get('/login', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/login.html'));
+});
+
+router.post('/login', async (req, res) => {
+  const usuario = req.body;
+
+  const selectUser = await Usuario.readByEmailAndPassword(usuario.email, usuario.senha);
+
+  if (selectUser) {
+    res.status(200).json({ message: 'Usuário existente!', user_id:selectUser.user_id});
+  } else {
+    res.status(400).json({ message: 'Usuário não existe!' });
+  }
 });
 
 router.get('/perfil', function (req, res) {
@@ -138,6 +151,7 @@ router.use((req, res, next) => {
 // Error handler
 
 router.use((err, req, res, next) => {
+  console.log(err)
   if (err instanceof HTTPError) {
     res.status(err.code).json({ message: err.message });
   } else {
