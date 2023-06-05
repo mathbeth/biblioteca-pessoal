@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { fileURLToPath } from 'url';
-import { celebrate, Joi} from 'celebrate';
 import path from 'path';
 import Usuario from '../models/Usuario.js';
 import Livro from '../models/Livro.js';
