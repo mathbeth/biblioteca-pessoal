@@ -40,19 +40,18 @@ function loadFormSubmit() {
     });
 
     const novoUsuario = await response.json();
-
+    
     addUsuario(novoUsuario);
-
+  
     form.reset();
 
     document.querySelector('#submitForm').click();
 
     window.location.href = '/login';
   };
-} 
+}
 
 // A parte do login ainda não funciona
-
 function addLoginUsuario(usuario) {
   fetch('/login', {
     method: 'POST',
@@ -64,7 +63,7 @@ function addLoginUsuario(usuario) {
 }
 
 function loadLoginFormSubmit() {
-  const form = document.querySelector('form');
+  const form = document.getElementById('loginForm');
 
   form.onsubmit = async (event) => {
     event.preventDefault();
@@ -72,7 +71,7 @@ function loadLoginFormSubmit() {
 
     const senha = document.querySelector('#senha').value;
 
-    const usuario = { username, email, senha };
+    const usuario = { email, senha };
 
     const response = await fetch('/login', {
       method: 'POST',
@@ -84,7 +83,16 @@ function loadLoginFormSubmit() {
     const novoLogin = await response.json();
 
     if (response.ok) {
-      console.log(`${userId}`);
+      console.log(`${novoLogin.user_id}`);
+
+      localStorage.setItem('user_id', novoLogin.user_id);
+      localStorage.setItem('email', novoLogin.email);
+
+      const user_id = localStorage.getItem('user_id');
+      const email = localStorage.getItem('email');
+
+      console.log(`User ID armazenado: ${user_id}`);
+      console.log(`Email armazenado: ${email}`);
     } else {
       console.log('error');
     }

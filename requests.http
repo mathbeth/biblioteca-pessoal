@@ -6,8 +6,8 @@ POST {{host}}/cadastro
 Content-Type: application/json
 
 {
-  "username": "user1",
-  "email": "user1@gmail.com",
+  "username": "testUser",
+  "email": "testUser@gmail.com",
   "senha": "user1234"
 }
 
@@ -16,7 +16,7 @@ GET {{host}}/usuarios
 
 ### Deletar usuário
 
-DELETE {{host}}/usuarios/7
+DELETE {{host}}/usuarios/:id
 
 ### Array de livros
 
