@@ -6,9 +6,9 @@ POST {{host}}/cadastro
 Content-Type: application/json
 
 {
-  "username": "gabu",
-  "email": "gabu@gmail.com",
-  "senha": "897654321"
+  "username": "user1",
+  "email": "user1@gmail.com",
+  "senha": "user1234"
 }
 
 ### Array de usuários

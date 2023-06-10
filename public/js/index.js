@@ -1,3 +1,22 @@
+function addUsuario(usuario) {
+  fetch('/cadastro', {
+    method: 'POST',
+    body: JSON.stringify(usuario),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+async function loadUsuarios() {
+  const response = await fetch('/usuarios');
+
+  const usuarios = await response.json();
+
+  for (const usuario of usuarios) {
+    addUsuario(usuario);
+  }
+}
+
 function loadFormSubmit() {
   const form = document.querySelector('form');
 
@@ -22,11 +41,56 @@ function loadFormSubmit() {
 
     const novoUsuario = await response.json();
 
+    addUsuario(novoUsuario);
+
     form.reset();
 
     document.querySelector('#submitForm').click();
 
-    location.href = '/login';
+    window.location.href = '/login';
+  };
+} 
+
+// A parte do login ainda não funciona
+
+function addLoginUsuario(usuario) {
+  fetch('/login', {
+    method: 'POST',
+    body: JSON.stringify(usuario),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+function loadLoginFormSubmit() {
+  const form = document.querySelector('form');
+
+  form.onsubmit = async (event) => {
+    event.preventDefault();
+    const email = document.querySelector('#email').value;
+
+    const senha = document.querySelector('#senha').value;
+
+    const usuario = { username, email, senha };
+
+    const response = await fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify(usuario),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const novoLogin = await response.json();
+
+    if (response.ok) {
+      console.log(`${userId}`);
+    } else {
+      console.log('error');
+    }
+
+    form.reset();
+    document.querySelector('#submitForm').click();
   };
 }
 
@@ -90,7 +154,5 @@ async function loadBooks() {
     await addBookView(livro);
   }
 }
-
-window.addEventListener('load', loadBooks);
 
 loadFormSubmit();

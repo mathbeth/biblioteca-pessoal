@@ -7,11 +7,7 @@
   <link rel="stylesheet" type="text/css" href="/css/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/favicon/site.webmanifest">
-  <script type="text/javascript" src="/js/main.js"></script>
+  <script src="/js/index.js"></script>
   <title>Book'ncat - Login</title>
 </head>
 <body>
@@ -19,7 +15,7 @@
       <div class="circle"></div>
       <div class="circle"></div>
       <div class="inLoginForm">
-          <form>
+          <form id="loginForm">
               <div class="title">
                   <h3>Login</h3>
               </div>
@@ -31,7 +27,7 @@
                   <label for="password">Senha</label>
                   <input type="password" placeholder="Informe sua senha" id="senha" />
               </div>
-              <a href="/html/cadastro.html">Cadastre-se</a>
+              <a href="http://localhost:3000/cadastro">Cadastre-se</a>
               <button class="submitForm" href="index.html">Entrar</button>
           </form>
       </div>

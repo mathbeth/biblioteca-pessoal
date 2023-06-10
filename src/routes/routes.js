@@ -66,6 +66,7 @@ router.post('/login', async (req, res) => {
   const selectUser = await Usuario.readByEmailAndPassword(usuario.email, usuario.senha);
 
   if (selectUser) {
+    console.log(`Usuário logado: Id do Usuário: ${selectUser.user_id}, Email: ${selectUser.email}`);
     res.status(200).json({ message: 'Usuário existente!', user_id:selectUser.user_id});
   } else {
     res.status(400).json({ message: 'Usuário não existe!' });
