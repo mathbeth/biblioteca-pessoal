@@ -166,3 +166,4 @@ async function loadBooks() {
 }
 
 loadFormSubmit();
+loadBooks();
