@@ -99,6 +99,8 @@ function loadLoginFormSubmit() {
 
     form.reset();
     document.querySelector('#submitForm').click();
+
+    window.location.href = "/perfil";
   };
 }
 

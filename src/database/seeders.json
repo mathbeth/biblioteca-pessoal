@@ -4,25 +4,25 @@
       "user_id": 1,
       "username": "matheus",
       "email": "matheus@example.com",
-      "senha": "mariabethanias2"
+      "senha": "senhasenha"
     },
     {
       "user_id": 2,
       "username": "heleny",
       "email": "heleny@example.com",
-      "senha": "adorodesenhar"
+      "senha": "senhasenha"
     },
     {
       "user_id": 3,
       "username": "jhullia",
       "email": "jhullia@example.com",
-      "senha": "amomeunamoradomaisquetudo"
+      "senha": "senhasenha"
     },
     {
       "user_id": 4,
       "username": "gabi",
       "email": "gabi@example.com",
-      "senha": "adoroaadeles2"
+      "senha": "senhasenha"
     }
   ],
 

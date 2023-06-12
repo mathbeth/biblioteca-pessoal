@@ -45,7 +45,7 @@ Content-Type: application/json
 
 {
   "email": "heleny@example.com",
-  "senha": "adorodesenhar"
+  "senha": "senhasenha"
 }
 
 ### Login inválido
