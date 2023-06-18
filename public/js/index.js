@@ -39,15 +39,23 @@ function loadFormSubmit() {
       },
     });
 
-    const novoUsuario = await response.json();
+    if (response.ok) {
+      const novoUsuario = await response.json();
 
-    addUsuario(novoUsuario);
+      addUsuario(novoUsuario);
 
-    form.reset();
+      form.reset();
 
-    document.querySelector('#submitForm').click();
+      document.querySelector('#submitForm').click();
 
-    window.location.href = '/login';
+      alert('Usuário cadastrado com sucesso!');
+      
+      window.location.href = '/login';
+
+    } else {
+      alert('Erro ao cadastrar usuário!');
+    }
+    
   };
 }
 
@@ -164,25 +172,6 @@ async function loadBooks() {
     await addBookView(livro);
   }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const submitForm = document.getElementById("submitForm")
-  const username = document.getElementById("username")
-  const email = document.getElementById("email")
-  const senha = document.getElementById("senha")
-
-  submitForm.addEventListener("click", function () {
-    const cadastroSucesso = true
-
-    if (cadastroSucesso) {
-      if (username.value.length != 0 && email.value.length != 0 && senha.value.length != 0)
-        alert("Cadastro realizado com sucesso!")
-    } else {
-      alert("Erro ao cadastrar! Por favor, tente novamente.")
-    }
-  })
-})
 
 loadFormSubmit();
 loadBooks();

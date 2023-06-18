@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+@font-face {
+    font-family: 'Codec Pro';
+    src: url('https://fonts.cdnfonts.com/s/31902/CodecPro-Regular.woff');
+}
+
+:root {
+  --fonte-titulo: 'Codec Pro';
+  --fonte1: 'DM Sans', sans-serif;
+}
+
 body {
     height: 100vh;
     display: flex;
@@ -38,7 +50,8 @@ a {
 .circle:first-child {
     left: -20%;
     top: -12%;
-    background: linear-gradient(#ff0060, #c302b5);
+    background: linear-gradient(#ffffff, #4F6D7A);
+    /* background-color: #E3B505; */
 }
 
 .circle:nth-child(2) {
