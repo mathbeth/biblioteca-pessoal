@@ -1,4 +1,4 @@
-function addUsuario(usuario) {
+/* function addUsuario(usuario) {
   fetch('/cadastro', {
     method: 'POST',
     body: JSON.stringify(usuario),
@@ -57,7 +57,7 @@ function loadFormSubmit() {
     }
     
   };
-}
+} */
 
 // A parte do login ainda não funciona
 function addLoginUsuario(usuario) {
@@ -113,7 +113,7 @@ function loadLoginFormSubmit() {
 }
 
 function getBookView(livro) {
-  const { livro_id, titulo, autor, editora, ano_pub } = livro;
+  const { livro_id, titulo, autor, editora, genero } = livro;
 
   return `
     <div class="col" id="livro-${livro_id}">
@@ -137,7 +137,7 @@ function getBookView(livro) {
             <span class="fw-bold">Editora:</span> ${editora}
           </div>
           <div>
-            <span class="fw-bold">Ano de publicação:</span> ${ano_pub}
+            <span class="fw-bold">Genero:</span> ${genero}
           </div>
         </div>
       </div>
@@ -166,6 +166,7 @@ async function addBookView(livro) {
 
 async function loadBooks() {
   const response = await fetch('/livros');
+
   const livros = await response.json();
 
   for (const livro of livros) {
@@ -173,5 +174,5 @@ async function loadBooks() {
   }
 }
 
-loadFormSubmit();
+/* loadFormSubmit(); */
 loadBooks();

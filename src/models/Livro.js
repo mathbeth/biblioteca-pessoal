@@ -1,68 +1,53 @@
-import Database from "../database/database.js";
+import prisma from '../database/index.js';
 
 async function create(livro) {
-  const db = await Database.connect();
+  const novoLivro = await prisma.livros.create({
+    data: livro,
+  });
 
-  const { titulo, autor, editora, ano_pub } = livro;
-
-  const sql = 
-  `INSERT INTO livros (titulo, autor, editora, ano_pub) 
-  VALUES (?, ?, ?, ?)`;
-
-  const { lastID } = await db.run(sql, [titulo, autor, editora, ano_pub]);
-
-  return read(lastID);
+  return novoLivro;
 }
 
 async function readAll() {
-  const db = await Database.connect();
+  const livros = await prisma.livros.findMany();
 
-  const sql = `SELECT * FROM livros`;
-
-  const livros = await db.all(sql);
-
-  return livros;
+  return livros
 }
 
 async function read(id) {
-  const db = await Database.connect();
+  const livro = await prisma.livros.findUnique({
+    where: {
+      id,
+    },
+  });
 
-  const sql = `SELECT * FROM livros WHERE livro_id = ?`;
-
-  const livro = await db.get(sql, [id]);
-
-  return livro;
+  return livro
 }
 
 async function update(id, livro) {
-  const db = await Database.connect();
+  const updatedLivro = await prisma.livros.update({
+    where: {
+      livro_id: id,
+    },
+    data: livro,
+    include: {
+      livro: true
+    },
+  });
 
-  const { titulo, autor, editora, ano_pub } = livro;
-
-  const sql = 
-  `UPDATE livros 
-  SET titulo = ?, autor = ?, editora = ?, ano_pub = ? 
-  WHERE livro_id = ?`;
-
-  const { changes } = await db.run(sql, [titulo, autor, editora, ano_pub, id]);
-
-  if (changes === 1) {
-    return read(id);
-  } else {
-    return false;
-  }
+  return updatedLivro
 }
 
 async function remove(id) {
-  const db = await Database.connect();
+  const livroId = parseInt(id);
 
-  const sql = 
-  `DELETE FROM livros 
-  WHERE livro_id = ?`;
+  const removedLivro = await prisma.livros.delete({
+    where: {
+      livro_id: livroId,
+    },
+  });
 
-  const { changes } = await db.run(sql, [id]);
-
-  return changes === 1;
+  return removedLivro
 }
 
 export default {

@@ -31,12 +31,12 @@ Content-Type: application/json
   "titulo": "teste",
   "autor": "testeovaldo da silva",
   "editora": "testando",
-  "ano_pub": 1984
+  "genero": "romance"
 }
 
 ### Deletar livro 
 
-DELETE {{host}}/livros/
+DELETE {{host}}/livros/:id
 
 ### Login válido
 

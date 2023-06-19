@@ -1,83 +1,67 @@
-import Database from "../database/database.js";
+import prisma from '../database/index.js';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 async function create(usuario) {
-  const db = await Database.connect();
+  const novoUsuario = await prisma.usuarios.create({
+    data: usuario,
+  });
 
-  const { username, email, senha } = usuario;
-
- // const criptografia = await bcrypt.hash(usuario.senha, saltRounds);
-
-  const sql = 
-  `INSERT INTO usuarios 
-  (username, email, senha) 
-  VALUES (?, ?, ?)`;
-
-  const { lastID } = await db.run(sql, [username, email, senha]);
-
-  return read(lastID);
+  return novoUsuario;
 }
 
 async function readAll() {
-  const db = await Database.connect();
-
-  const sql = `SELECT * FROM usuarios`;
-
-  const usuarios = await db.all(sql);
+  const usuarios = await prisma.usuarios.findMany();
 
   return usuarios;
 }
 
 async function read(id) {
-  const db = await Database.connect();
-
-  const sql = `SELECT * FROM usuarios WHERE user_id = ?`;
-
-  const usuario =  await db.get(sql, [id]);
+  const usuario = await prisma.usuarios.findUnique({
+    where: {
+      user_id: id
+    },
+  });
 
   return usuario;
 }
 
 async function readByEmailAndPassword(email, senha) {
-  const db = await Database.connect();
-
-  const sql = `SELECT * FROM usuarios WHERE email = ? AND senha = ?`;
-
-  const usuario =  await db.get(sql, [email, senha]);
+  const usuario = await prisma.usuarios.findFirst({
+    where: {
+      email: email,
+      senha: senha,
+    },
+  });
 
   return usuario;
 }
 
 async function update(id, usuario) {
-  const db = await Database.connect();
+  const updatedUsuario = await prisma.usuarios.update({
+    where: {
+      user_id: id,
+    },
 
-  const { username, email, senha } = usuario;
+    data: usuario,
+    include: {
+      usuario: true
+    },
+  });
 
-  const sql = 
-  `UPDATE usuarios 
-  SET username = ?, email = ?, senha = ? 
-  WHERE user_id = ?`;
-
-  const { changes } = await db.run(sql, [username, email, senha, id]);
-
-  if (changes === 1) {
-    return read(id);
-  } else {
-    return false;
-  }
+  return updatedUsuario;
 }
 
 async function remove(id) {
-  const db = await Database.connect();
+  const usuarioId = parseInt(id);
 
-  const sql = 
-  `DELETE FROM usuarios 
-  WHERE user_id = ?`;
+  const removedUsuario = await prisma.usuarios.delete({
+    where: {
+      user_id: usuarioId,
+    },
+  });
 
-  const { changes } = await db.run(sql, [id]);
-
-  return changes === 1;
+  return removedUsuario;
 }
 
 export default { 

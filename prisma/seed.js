@@ -90,7 +90,7 @@ async function main() {
     }
   });
 
-  const estante1 = await prisma.estante.create({
+  const estante1 = await prisma.meus_livros.create({
     data: {
       user_id: 1,
       livro_id: 1,

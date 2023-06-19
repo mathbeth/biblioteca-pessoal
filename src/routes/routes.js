@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import Usuario from '../models/Usuario.js';
 import Livro from '../models/Livro.js';
-import Estante from '../models/Estante.js';
+import Meus_livros from '../models/Meus_livros.js';
 
 class HTTPError extends Error {
   constructor(message, code) {
@@ -92,7 +92,6 @@ router.post('/cadastro/livro', async (req, res) => {
 
   if (novoLivro) {
     res.json(novoLivro);
-    /* res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));*/
   } else {
     throw new HTTPError('Não foi possivel cadastrar o livro', 400);
   }
@@ -108,13 +107,13 @@ router.delete('/livros/:id', async (req, res) => {
   const id = req.params.id;
 
   if (id && await Livro.remove(id)) {
-    res.json({ message: 'Livro removido com sucesso' });
+    res.sendStatus(204);
   } else {
     res.json({ message: 'Erro ao remover livro' });
   }
 });
 
-router.post('/estante', async (req, res) => {
+/* router.post('/estante', async (req, res) => {
   const estante = req.body;
 
   const novaEstante = await Estante.create(estante);
@@ -141,7 +140,7 @@ router.delete('/estante/:user_id/:livro_id', async (req, res) => {
   } else {
     res.json({ message: 'Erro ao remover estante' });
   }
-})
+}) */
 
 // 404 handler
 

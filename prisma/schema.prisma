@@ -11,32 +11,32 @@ datasource db {
 }
 
 model Usuarios {
-  user_id  Int       @id @default(autoincrement())
-  username String    @unique
-  email    String    @unique
-  senha    String
-  estante  Estante[]
+  user_id     Int           @id @default(autoincrement())
+  username    String        @unique
+  email       String        @unique
+  senha       String
+  meus_livros Meus_livros[]
 }
 
 model Livros {
-  livro_id Int       @id @default(autoincrement())
-  titulo   String
-  autor    String
-  editora  String
-  genero   String
-  estante  Estante[]
+  livro_id    Int       @id @default(autoincrement())
+  titulo      String
+  autor       String
+  editora     String
+  genero      String
+  meus_livros Meus_livros[]
 }
 
-model Estante {
+model Meus_livros {
   user_id     Int
   livro_id    Int
   status      String
   avaliacao   Int?
   resenha     String?
-  data_inicio DateTime?
-  data_fim    DateTime?
-  usuario     Usuarios   @relation(fields: [user_id], references: [user_id])
-  livro       Livros     @relation(fields: [livro_id], references: [livro_id])
+  data_inicio String?
+  data_fim    String?
+  usuario     Usuarios @relation(fields: [user_id], references: [user_id])
+  livro       Livros   @relation(fields: [livro_id], references: [livro_id])
 
   @@id([user_id, livro_id])
 }
