@@ -1,4 +1,4 @@
-import Database from "./database.js";
+import Database from "../lembrancas/database.js";
 
 async function up() {
   const db = await Database.connect();
