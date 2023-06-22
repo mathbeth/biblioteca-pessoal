@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <script src="/js/index.js" type="module"></script>
 </head>
 
 <body>
@@ -17,22 +16,22 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="inLoginForm">
-            <form id="loginForm">
+            <form id="loginForm" action="/login" method="POST">
                 <div class="title">
                     <h3>Login</h3>
                 </div>
                 <div class="inputGroup">
                     <label for="email">Email</label>
-                    <input type="email" placeholder="Informe seu email" id="email" />
+                    <input type="email" placeholder="Informe seu email" id="email" name="email"/>
                 </div>
                 <div class="inputGroup">
                     <label for="password">Senha</label>
-                    <input type="password" placeholder="Informe sua senha" id="senha" />
+                    <input type="password" placeholder="Informe sua senha" id="senha" name="senha" />
                 </div>
                 <a href="http://localhost:3000/cadastro">Cadastre-se</a>
                 <div class="botoes">
                     <a href="http://localhost:3000"><img src="/imagens/seta-voltar.png" alt="" class="seta-voltar"></a>
-                    <button class="submitForm" href="index.html">Entrar</button>
+                    <button id="submitForm" class="submitForm" href="index.html">Entrar</button>
                 </div>
             </form>
         </div>
