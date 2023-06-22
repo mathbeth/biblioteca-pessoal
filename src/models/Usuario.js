@@ -37,6 +37,22 @@ async function readByEmailAndPassword(email, senha) {
   return usuario;
 }
 
+async function auth(email, senha) {
+  const usuario = await prisma.usuarios.findUnique({
+    where: { email },
+    select: {
+      user_id: true,
+      senha: true
+    }
+  })
+
+  if (usuario && usuario.senha === senha) {
+    return usuario.user_id
+  } else {
+    return 0
+  }
+}
+
 async function update(id, usuario) {
   const updatedUsuario = await prisma.usuarios.update({
     where: {
@@ -69,6 +85,7 @@ export default {
   readAll, 
   read, 
   readByEmailAndPassword,
+  auth,
   update, 
   remove 
 };
