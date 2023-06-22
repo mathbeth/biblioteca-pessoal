@@ -33,8 +33,8 @@ model Meus_livros {
   status      String
   avaliacao   Int?
   resenha     String?
-  data_inicio String?
-  data_fim    String?
+  data_inicio DateTime?
+  data_fim    DateTime?
   usuario     Usuarios @relation(fields: [user_id], references: [user_id])
   livro       Livros   @relation(fields: [livro_id], references: [livro_id])
 

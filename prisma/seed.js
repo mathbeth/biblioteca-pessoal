@@ -97,8 +97,8 @@ async function main() {
       status: "Lendo",
       avaliacao: 4,
       resenha: "Ótimo livro!",
-      data_inicio: "20/10/1983",
-      data_fim: "2022-02-28"
+      data_inicio: null,
+      data_fim: null
     }
   })
 }
