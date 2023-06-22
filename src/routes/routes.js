@@ -26,16 +26,14 @@ router.get('/cadastro', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/cadastro.html'));
 });
 
-router.post('/cadastro', async (req, res) => {
+router.post('/cadastro', async (req, res, next) => {
   const usuario = req.body;
 
-  const novoUsuario = await Usuario.create(usuario);
-
-  if (novoUsuario) {
-    // res.status(201).json({ message: 'Usuário cadastrado com sucesso', id: novoUsuario.id });
-    res.json(novoUsuario);
-  } else {
-    res.status(400).json({ message: 'Erro ao cadastrar usuário' });
+  try {
+    await Usuario.create(usuario);
+    res.redirect('/login');
+  } catch (e) {
+    next(e)
   }
 });
 
@@ -60,17 +58,21 @@ router.get('/login', function (req, res) {
   res.sendFile(path.join(__dirname, '../../public/html/login.html'));
 });
 
-router.post('/login', async (req, res) => {
-  const usuario = req.body;
+router.post('/login', async (req, res, next) => {
+  try {
+    const usuario = req.body;
 
-  const selectUser = await Usuario.readByEmailAndPassword(usuario.email, usuario.senha);
-
-  if (selectUser) {
-    console.log(`Usuário logado: Id do Usuário: ${selectUser.user_id}, Email: ${selectUser.email}`);
-    res.status(200).json({ message: 'Usuário existente!', user_id:selectUser.user_id});
-  } else {
-    res.status(400).json({ message: 'Usuário não existe!' });
-  }
+    const userLogged = await Usuario.auth(usuario.email, usuario.senha);
+    // console.log(usuario);
+    // console.log(userLogged);
+    if (userLogged) {
+      res.redirect('/perfil');
+    } else {
+      throw new HTTPError('Usuário e/ou senha incorreto(s)!', 400)
+    }
+  } catch (error) {
+  next(error);
+}
 });
 
 router.get('/perfil', function (req, res) {
