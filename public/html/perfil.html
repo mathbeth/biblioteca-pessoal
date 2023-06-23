@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css">
+  <script type="module" src="/js/models/deleteProfile.js"></script>
   <title>Book'ncat - Perfil</title>
 </head>
 
@@ -24,9 +25,27 @@
     <div class="buttons">
       <button><i class="fa-solid fa-book-open"></i> Minhas Resenhas</button>
       <a href="http://localhost:3000/cadastro/livro"><button><i class="fas fa-book"></i> Meus Livros</button></a>
-      <button><i class="fa-solid fa-gear"></i> Configurações</button>
     </div>
+    <div class="overlay"></div>
+    <button class="burger" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-close"></i>
+    </button>
+    <aside>
+      <h3>Book'ncat</h3>
+      <a>Home</a>
+      <a>Sobre</a>
+      <a>Contato</a>
+      <h3>Configurações</h3>
+      <a>Atualizar dados</a>
+      <a id="delete-profile">Excluir perfil</a>
+      <a>Sair</a>
+    </aside>
   </header>
+
+  <script type="text/javascript">
+    const toggleMenu = () => document.body.classList.toggle("open");
+  </script>
 </body>
 
 </html>
