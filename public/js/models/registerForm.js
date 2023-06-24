@@ -46,9 +46,12 @@ function loadFormSubmit() {
 
       form.reset();
 
-      document.querySelector('#submitForm').click();
+      document.querySelector('submitForm').click();
 
       alert('Usuário cadastrado com sucesso!');
+
+      window.location.href = '/login';
+      
     } else {
       alert('Erro ao cadastrar usuário!');
     }
