@@ -1,9 +1,14 @@
 import 'express-async-errors';
 import express from 'express';
 import morgan from 'morgan';
+import path from 'path';
 import router from './routes/routes.js';
 
 const server = express();
+
+// server.set('views', path.join(__dirname, 'views'));
+
+server.set('view engine', 'ejs');
 
 server.use(express.urlencoded({ extended: true }));
 

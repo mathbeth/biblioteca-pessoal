@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/cadastro', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/cadastro.html'));
+  res.render('cadastro');
 });
 
 router.post('/cadastro', async (req, res, next) => {

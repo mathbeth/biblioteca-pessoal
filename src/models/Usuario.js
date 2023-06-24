@@ -26,6 +26,24 @@ async function read(id) {
   return usuario;
 }
 
+async function readByUsername(username) {
+  const usuario = await prisma.usuarios.findUnique({
+    where: {
+      username: username
+    },
+  });
+
+  return usuario;
+}
+
+async function readByEmail(email) {
+  const usuario = await prisma.usuarios.findUnique({
+    where: {
+      email: email
+    },
+  });
+}
+
 async function readByEmailAndPassword(email, senha) {
   const usuario = await prisma.usuarios.findFirst({
     where: {
@@ -84,6 +102,8 @@ export default {
   create, 
   readAll, 
   read, 
+  readByUsername,
+  readByEmail,
   readByEmailAndPassword,
   auth,
   update, 
