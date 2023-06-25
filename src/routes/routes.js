@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import { fileURLToPath } from 'url';
-import path from 'path';
 import Usuario from '../models/Usuario.js';
 import Livro from '../models/Livro.js';
 import Meus_livros from '../models/Meus_livros.js';
 import { usuarioSchema } from '../schemas/Schema.js';
+import Swal from 'sweetalert2';
 
 class HTTPError extends Error {
   constructor(message, code) {
@@ -13,9 +12,7 @@ class HTTPError extends Error {
   }
 }
 
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+// TODO: Implementar front-end com toastr e sweet alert 2
 
 const router = Router();
 
@@ -95,7 +92,6 @@ router.get('/cadastro/livro', function (req, res) {
 });
 
 router.post('/cadastro/livro', async (req, res) => {
-  // using try catch: 
   try {
     const livro = req.body;
     await Livro.create(livro);
