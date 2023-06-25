@@ -4,6 +4,7 @@ import path from 'path';
 import Usuario from '../models/Usuario.js';
 import Livro from '../models/Livro.js';
 import Meus_livros from '../models/Meus_livros.js';
+import { usuarioSchema } from '../schemas/Schema.js';
 
 class HTTPError extends Error {
   constructor(message, code) {
@@ -27,13 +28,20 @@ router.get('/cadastro', function (req, res) {
 });
 
 router.post('/cadastro', async (req, res, next) => {
-  const usuario = req.body;
-
   try {
-    await Usuario.create(usuario);
+    const usuario = usuarioSchema.parse(req.body);
+
+    if (usuario.senha !== usuario.confirma_senha) {
+      throw new HTTPError('As senhas não são iguais!', 400);
+    }
+
+    const { confirma_senha, ...usuarioData } = usuario;
+
+    await Usuario.create(usuarioData);
+
     res.json(usuario);
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -63,8 +71,7 @@ router.post('/login', async (req, res, next) => {
     const usuario = req.body;
 
     const userLogged = await Usuario.auth(usuario.email, usuario.senha);
-    // console.log(usuario);
-    // console.log(userLogged);
+    
     if (userLogged) {
       res.redirect('/perfil');
     } else {

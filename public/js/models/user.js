@@ -29,7 +29,9 @@ function enviaForm() {
 
     const senha = document.querySelector('#senha').value;
 
-    const usuario = { username, email, senha };
+    const confirma_senha = document.querySelector('#confirma_senha').value;
+
+    const usuario = { username, email, senha, confirma_senha };
 
     const response = await fetch('/cadastro', {
       method: 'POST',
