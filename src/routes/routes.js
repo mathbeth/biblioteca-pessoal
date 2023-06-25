@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 const router = Router();
 
 router.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.render('index');
 });
 
 router.get('/cadastro', function (req, res) {
@@ -31,7 +31,7 @@ router.post('/cadastro', async (req, res, next) => {
 
   try {
     await Usuario.create(usuario);
-    res.redirect('/login');
+    res.json(usuario);
   } catch (e) {
     next(e)
   }
@@ -55,7 +55,7 @@ router.delete('/usuarios/:id', async (req, res) => {
 });
 
 router.get('/login', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/login.html'));
+  res.render('login');
 });
 
 router.post('/login', async (req, res, next) => {
@@ -76,7 +76,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.get('/perfil', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/perfil.html'));
+  res.render('perfil')
 });
 
 // router.get('/estante', function (req, res) {
@@ -84,18 +84,17 @@ router.get('/perfil', function (req, res) {
 // });
 
 router.get('/cadastro/livro', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../public/html/cadastroLivro.html'));
+  res.render('cadastroLivro')
 });
 
 router.post('/cadastro/livro', async (req, res) => {
-  const livro = req.body;
-
-  const novoLivro = await Livro.create(livro);
-
-  if (novoLivro) {
-    res.json(novoLivro);
-  } else {
-    throw new HTTPError('Não foi possivel cadastrar o livro', 400);
+  // using try catch: 
+  try {
+    const livro = req.body;
+    await Livro.create(livro);
+    res.redirect('/cadastro/livro');
+  } catch (e) {
+    res.json({ message: 'Erro ao cadastrar livro' });
   }
 });
 
