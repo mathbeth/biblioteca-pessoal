@@ -1,4 +1,4 @@
-function addUsuario(usuario) {
+function createUser(usuario) {
   fetch('/cadastro', {
     method: 'POST',
     body: JSON.stringify(usuario),
@@ -7,19 +7,19 @@ function addUsuario(usuario) {
     },
   });
 }
+
 async function loadUsuarios() {
   const response = await fetch('/usuarios');
 
   const usuarios = await response.json();
 
   for (const usuario of usuarios) {
-    addUsuario(usuario);
+    createUser(usuario);
   }
 }
 
-function loadFormSubmit() {
+function enviaForm() {
   const form = document.querySelector('form');
-
   form.onsubmit = async (event) => {
     event.preventDefault();
 
@@ -37,26 +37,23 @@ function loadFormSubmit() {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-
+    })
     if (response.ok) {
       const novoUsuario = await response.json();
 
-      addUsuario(novoUsuario);
-
-      form.reset();
-
-      document.querySelector('submitForm').click();
-
-      alert('Usuário cadastrado com sucesso!');
-
-      window.location.href = '/login';
+      createUser(novoUsuario);
       
+      form.reset();
+      
+      document.querySelector('#submitForm').click();
+      
+      alert('Usuário cadastrado com sucesso!');
+      
+      window.location.href = '/login';
     } else {
       alert('Erro ao cadastrar usuário!');
-    }
-    
+    }   
   };
 }
 
-loadFormSubmit();
+enviaForm();

@@ -31,7 +31,7 @@ router.post('/cadastro', async (req, res, next) => {
 
   try {
     await Usuario.create(usuario);
-    res.redirect('/login');
+    res.json(usuario);
   } catch (e) {
     next(e)
   }
@@ -88,14 +88,14 @@ router.get('/cadastro/livro', function (req, res) {
 });
 
 router.post('/cadastro/livro', async (req, res) => {
-  const livro = req.body;
+  try {
+    const livro = req.body;
 
-  const novoLivro = await Livro.create(livro);
-
-  if (novoLivro) {
-    res.json(novoLivro);
-  } else {
-    throw new HTTPError('Não foi possivel cadastrar o livro', 400);
+    await Livro.create(livro);
+    
+    res.redirect('/cadastro/livro');
+  } catch (e) {
+    res.json({ message: 'Erro ao cadastrar livro' });
   }
 });
 
