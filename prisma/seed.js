@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";  
 
 const prisma = new PrismaClient();
+const saltRounds = Number(process.env.SALT);
 
 
 async function main() {
@@ -39,6 +41,19 @@ async function main() {
       senha: 'senhasenha'
     }
   });
+
+  for (const usuario of [ user1, user2, user3, user4 ]) {
+    const senha = await bcrypt.hash(usuario.senha, saltRounds);
+
+    await prisma.usuarios.update({
+      where: {
+        user_id: usuario.user_id
+      },
+      data: {
+        senha
+      }
+    });
+  }
 
   const livro1 = await prisma.livros.create({
     data: {

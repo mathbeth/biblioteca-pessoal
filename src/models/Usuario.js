@@ -1,8 +1,10 @@
 import prisma from '../database/index.js';
 import bcrypt from 'bcrypt';
-const saltRounds = 10;
+const saltRounds = Number(process.env.SALT);
 
 async function create(usuario) {
+  usuario.senha = await bcrypt.hash(usuario.senha, saltRounds);
+
   const novoUsuario = await prisma.usuarios.create({
     data: usuario,
   });
@@ -42,6 +44,8 @@ async function readByEmail(email) {
       email: email
     },
   });
+
+  return usuario;
 }
 
 async function readByEmailAndPassword(email, senha) {
@@ -64,12 +68,17 @@ async function auth(email, senha) {
     }
   })
 
-  if (usuario && usuario.senha === senha) {
-    return usuario.user_id
-  } else {
-    return 0
+  if (usuario) {
+    
+    const match =  bcrypt.compareSync(senha, usuario.senha);
+
+    if (match) {
+      return usuario.user_id;
+    }
   }
-}
+    return 0;
+
+} 
 
 async function update(id, usuario) {
   const updatedUsuario = await prisma.usuarios.update({
