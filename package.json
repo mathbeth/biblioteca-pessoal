@@ -1,9 +1,16 @@
 {
   "name": "biblioteca-pessoal",
+  "version": "1.0.0",
+  "description": "Site de biblioteca pessoal",
+  "main": "src/index.js",
+  "repository": "https://github.com/mathbeth/biblioteca-pessoal",
+  "author": "mathbeth",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "open": "google-chrome-stable 127.0.0.1:3000"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
