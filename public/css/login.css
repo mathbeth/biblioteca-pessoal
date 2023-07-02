@@ -3,18 +3,6 @@
     padding: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-
-@font-face {
-    font-family: 'Codec Pro';
-    src: url('https://fonts.cdnfonts.com/s/31902/CodecPro-Regular.woff');
-}
-
-:root {
-  --fonte-titulo: 'Codec Pro';
-  --fonte1: 'DM Sans', sans-serif;
-}
-
 body {
     height: 100vh;
     display: flex;
@@ -35,7 +23,7 @@ a {
 .inFormBackground,
 .inLoginForm {
     width: 25rem;
-    height: 30rem;
+    height: 31rem;
     max-width: 320px;
     position: relative;
 }
@@ -51,7 +39,6 @@ a {
     left: -20%;
     top: -12%;
     background: linear-gradient(#ffffff, #4F6D7A);
-    /* background-color: #E3B505; */
 }
 
 .circle:nth-child(2) {
@@ -68,7 +55,7 @@ a {
     position: absolute;
     padding: 50px 35px;
     border-radius: 10px;
-    backdrop-filter: blur(5px);
+    /* backdrop-filter: blur(5px); */
     transform: translate(-50%, -50%);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -148,37 +135,6 @@ form * {
 
 .submitForm:hover::before {
     left: 0%;
-}
-
-.social {
-    display: flex;
-    margin-top: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-.social div {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    cursor: pointer;
-    color: #eaf0fb;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.27);
-}
-
-.social div:hover {
-    background-color: rgba(255, 255, 255, 0.47);
-}
-
-.social .fb {
-    margin-left: 25px;
-}
-
-.social .tw {
-    margin-left: 25px;
 }
 
 .botoes {
