@@ -12,8 +12,6 @@ class HTTPError extends Error {
   }
 }
 
-// TODO: Implementar front-end com toastr e sweet alert 2
-
 const router = Router();
 
 router.get('/', function (req, res) {
@@ -70,7 +68,7 @@ router.post('/login', async (req, res, next) => {
     const userLogged = await Usuario.auth(usuario.email, usuario.senha);
     
     if (userLogged) {
-      res.json({message: 'Usuário autenticado com sucesso!' });
+      res.redirect('/perfil');
     } else {
       throw new HTTPError('Usuário e/ou senha incorreto(s)!', 400)
     }
