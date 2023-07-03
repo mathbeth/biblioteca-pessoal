@@ -70,7 +70,7 @@ router.post('/login', async (req, res, next) => {
     const userLogged = await Usuario.auth(usuario.email, usuario.senha);
     
     if (userLogged) {
-      res.redirect('/perfil');
+      res.json({message: 'Usuário autenticado com sucesso!' });
     } else {
       throw new HTTPError('Usuário e/ou senha incorreto(s)!', 400)
     }

@@ -31,6 +31,11 @@ function enviaForm() {
 
     const confirma_senha = document.querySelector('#confirma_senha').value;
 
+    if (confirma_senha !== senha) {
+      alert('As senhas não são iguais!');
+      return;
+    }
+
     const usuario = { username, email, senha, confirma_senha };
 
     const response = await fetch('/cadastro', {

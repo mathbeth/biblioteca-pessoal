@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 const saltRounds = Number(process.env.SALT);
 
-
 async function main() {
   
   const user1 = await prisma.usuarios.create({
