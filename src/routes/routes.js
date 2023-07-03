@@ -45,12 +45,16 @@ router.get('/usuarios', async (req, res) => {
 });
 
 router.delete('/usuarios/:id', async (req, res) => {
-  const id = req.params.id;
+  try {
+    const id = req.params.id;
 
-  if (id && (await Usuario.remove(id))) {
-    res.json({ message: 'Usuário removido com sucesso' });
-  } else {
-    res.json({ message: 'Erro ao remover usuário' });
+    if (id && (await Usuario.remove(id))) {
+      res.json({ message: 'Usuário removido com sucesso' });
+    } else {
+      res.json({ message: 'Erro ao remover usuário' });
+    }
+  } catch (error) {
+    res.json({ message: 'Erro ao remover usuário' });
   }
 });
 
